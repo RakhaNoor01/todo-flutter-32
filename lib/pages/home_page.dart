@@ -1,45 +1,41 @@
-// lib/pages/home/home_page.dart (Versi Perbaikan)
+// lib/pages/home/home_page.dart
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_project/controllers/home_controller.dart';
 import 'package:todo_project/routes/app_routes.dart';
+import 'package:todo_project/widgets/todo_card.dart';
 
 class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Daftar Tugasku'),
+        title: Text(
+          'Daftar Tugas',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        backgroundColor: Colors.blueAccent,
+        centerTitle: true,
+        elevation: 0,
         automaticallyImplyLeading: false,
       ),
       body: Obx(() {
+        // memantau seluruh list
         if (controller.todos.isEmpty) {
           return Center(child: Text('Tidak ada tugas, hore!'));
         }
         return ListView.builder(
+          padding: EdgeInsets.all(8.0),
           itemCount: controller.todos.length,
           itemBuilder: (context, index) {
             final todo = controller.todos[index];
-            return Obx(() => CheckboxListTile(
-                  title: Text(
-                    todo.title,
-                    style: TextStyle(
-                      decoration: todo.isDone.value
-                          ? TextDecoration.lineThrough
-                          : TextDecoration.none,
-                    ),
-                  ),
-                  subtitle: todo.description != null
-                      ? Text(todo.description!)
-                      : null,
-                  value: todo.isDone.value,
-                  onChanged: (value) {
-                    // --- DI SINI PERBAIKANNYA ---
-                    // Kirim seluruh objek 'todo', bukan hanya 'index'.
-                    controller.toggleTodoStatus(todo);
-                  },
-                ));
+            return TodoCard(
+              todo: todo,
+              onToggleStatus: (value) => controller.toggleTodoStatus(todo),
+              onEdit: () => Get.toNamed(Routes.editTodo, arguments: todo),
+              onDelete: () => controller.deleteTodo(todo),
+            );
           },
         );
       }),

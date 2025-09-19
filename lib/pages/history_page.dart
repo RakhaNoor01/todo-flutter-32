@@ -1,41 +1,42 @@
-// lib/pages/history/history_page.dart
+// lib/pages/history_page.dart (Versi Final)
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_project/controllers/home_controller.dart';
+import 'package:todo_project/routes/app_routes.dart';
+import 'package:todo_project/widgets/todo_card.dart';
 
-// Kita gunakan GetView<HomeController> karena data riwayat juga ada di sana
 class HistoryPage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Riwayat Tugas')),
+      appBar: AppBar(
+        title: Text(
+          'Riwayat Tugas',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        backgroundColor: Colors.blueAccent,
+        centerTitle: true,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+      ),
       body: Obx(() {
-        // Kali ini, kita pantau daftar 'completedTodos'
         if (controller.completedTodos.isEmpty) {
           return Center(child: Text('Belum ada tugas yang diselesaikan.'));
         }
         return ListView.builder(
+          padding: EdgeInsets.all(8.0),
           itemCount: controller.completedTodos.length,
           itemBuilder: (context, index) {
             final todo = controller.completedTodos[index];
-            return Obx(() => CheckboxListTile(
-                  controlAffinity: ListTileControlAffinity.leading,
-                  title: Text(
-                    todo.title,
-                    style: TextStyle(
-                      decoration: TextDecoration.lineThrough,
-                      color: Colors.grey[600],
-                    ),
-                  ),
-                  subtitle: todo.description != null
-                      ? Text(todo.description!)
-                      : null,
-                  value: todo.isDone.value,
-                  onChanged: (value) {
-                    // Jika di-uncheck, tugas akan kembali ke HomePage
-                    controller.toggleTodoStatus(todo);
-                  },
-                ));
+            return TodoCard(
+              todo: todo,
+              onToggleStatus: (value) {
+                // Jika di-uncheck, tugas akan kembali ke HomePage
+                controller.toggleTodoStatus(todo);
+              },
+              onEdit: () => Get.toNamed(Routes.editTodo, arguments: todo),
+              onDelete: () => controller.deleteTodo(todo),
+            );
           },
         );
       }),

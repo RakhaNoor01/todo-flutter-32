@@ -1,4 +1,5 @@
 // lib/controllers/add_todo_controller.dart
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_project/controllers/home_controller.dart';
@@ -8,19 +9,29 @@ class AddTodoController extends GetxController {
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
 
-  // State untuk dropdown dan date picker
-  var selectedPriority = Priority.Low.obs;
-  var selectedCategory = Category.Personal.obs;
-  var selectedDate = Rxn<DateTime>(); // Rxn agar bisa bernilai null
+  var selectedPriority = Todo.priorities[0].obs;
+  var selectedCategory = Todo.categories[0].obs;
+  var selectedDate = Rxn<DateTime>();
 
   final HomeController _homeController = Get.find();
+
+  void selectDate(BuildContext context) async {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2100),
+    );
+    if (picked != null) {
+      selectedDate.value = picked;
+    }
+  }
 
   void addTodo() {
     if (titleController.text.isEmpty) {
       Get.snackbar('Error', 'Judul tidak boleh kosong');
       return;
     }
-
     final newTodo = Todo(
       title: titleController.text,
       description: descriptionController.text,
@@ -28,8 +39,7 @@ class AddTodoController extends GetxController {
       category: selectedCategory.value,
       dueDate: selectedDate.value,
     );
-
-    _homeController.addTodo(newTodo); // Kirim todo baru ke HomeController
-    Get.back(); // Kembali ke halaman sebelumnya (Home)
+    _homeController.addTodo(newTodo);
+    Get.back();
   }
 }

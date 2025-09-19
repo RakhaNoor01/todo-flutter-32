@@ -1,6 +1,8 @@
 // lib/pages/edit_todo/edit_todo_page.dart
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:todo_project/controllers/edit_todo_controller.dart';
 import 'package:todo_project/models/todo_model.dart';
 import 'package:todo_project/widgets/primary_button.dart';
@@ -10,56 +12,79 @@ class EditTodoPage extends GetView<EditTodoController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Edit Tugas')),
+      backgroundColor: Colors.grey[200],
+      appBar: AppBar(
+        title: Text('Edit Tugas'),
+        backgroundColor: Colors.blueAccent,
+      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomTextField(controller: controller.titleController, hintText: 'Judul Tugas'),
-            SizedBox(height: 16),
-            CustomTextField(controller: controller.descriptionController, hintText: 'Deskripsi (Opsional)'),
-            SizedBox(height: 24),
+        child: Container(
+          padding: EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 10,
+              )
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Detail Tugas', style: Theme.of(context).textTheme.titleLarge),
+              SizedBox(height: 16),
+              CustomTextField(controller: controller.titleController, hintText: 'Judul Tugas', prefixIcon: Icons.title),
+              SizedBox(height: 16),
+              CustomTextField(controller: controller.descriptionController, hintText: 'Deskripsi (Opsional)', prefixIcon: Icons.description),
+              SizedBox(height: 24),
 
-            Text('Prioritas', style: TextStyle(fontWeight: FontWeight.bold)),
-            Obx(() => DropdownButton<Priority>(
-                  value: controller.selectedPriority.value,
-                  isExpanded: true,
-                  items: Priority.values.map((p) => DropdownMenuItem(value: p, child: Text(p.name))).toList(),
-                  onChanged: (val) => controller.selectedPriority.value = val!,
-                )),
-            SizedBox(height: 16),
-
-            Text('Kategori', style: TextStyle(fontWeight: FontWeight.bold)),
-            Obx(() => DropdownButton<Category>(
-                  value: controller.selectedCategory.value,
-                  isExpanded: true,
-                  items: Category.values.map((c) => DropdownMenuItem(value: c, child: Text(c.name))).toList(),
-                  onChanged: (val) => controller.selectedCategory.value = val!,
-                )),
-            SizedBox(height: 16),
-
-            Obx(() => ListTile(
-                  title: Text(controller.selectedDate.value == null
-                      ? 'Pilih Tanggal (Opsional)'
-                      : 'Tenggat: ${controller.selectedDate.value!.day}/${controller.selectedDate.value!.month}/${controller.selectedDate.value!.year}'),
-                  trailing: Icon(Icons.calendar_today),
-                  onTap: () async {
-                    DateTime? picked = await showDatePicker(
-                      context: context,
-                      initialDate: controller.selectedDate.value ?? DateTime.now(),
-                      firstDate: DateTime.now().subtract(Duration(days: 365)),
-                      lastDate: DateTime(2100),
-                    );
-                    if (picked != null) {
-                      controller.selectedDate.value = picked;
-                    }
-                  },
-                )),
-            SizedBox(height: 32),
-
-            PrimaryButton(text: 'SIMPAN PERUBAHAN', onPressed: () => controller.editTodo()),
-          ],
+              Text('Kategori & Prioritas', style: Theme.of(context).textTheme.titleLarge),
+              SizedBox(height: 16),
+              
+              // Dropdown
+              Obx(() => DropdownButtonFormField<String>(
+                    value: controller.selectedPriority.value,
+                    decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
+                    items: Todo.priorities.map((p) => DropdownMenuItem(value: p, child: Text(p))).toList(),
+                    onChanged: (val) => controller.selectedPriority.value = val!,
+                  )),
+              SizedBox(height: 16),
+              Obx(() => DropdownButtonFormField<String>(
+                    value: controller.selectedCategory.value,
+                    decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
+                    items: Todo.categories.map((c) => DropdownMenuItem(value: c, child: Text(c))).toList(),
+                    onChanged: (val) => controller.selectedCategory.value = val!,
+                  )),
+              SizedBox(height: 24),
+              
+              Text('Tenggat Waktu', style: Theme.of(context).textTheme.titleLarge),
+              SizedBox(height: 16),
+              
+              Obx(() => InkWell(
+                    onTap: () => controller.selectDate(context), // Panggil fungsi dari controller
+                    child: InputDecorator(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(controller.selectedDate.value == null
+                              ? 'Pilih Tanggal (Opsional)'
+                              : DateFormat('dd MMMM yyyy').format(controller.selectedDate.value!)),
+                          Icon(Icons.calendar_today),
+                        ],
+                      ),
+                    ),
+                  )),
+              SizedBox(height: 32),
+              PrimaryButton(text: 'SIMPAN PERUBAHAN', onPressed: () => controller.editTodo()),
+            ],
+          ),
         ),
       ),
     );

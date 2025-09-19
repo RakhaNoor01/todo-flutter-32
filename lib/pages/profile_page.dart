@@ -1,57 +1,94 @@
 // lib/pages/profile/profile_page.dart
+
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // URL untuk gambar profil (placeholder)
-    final String profileImageUrl = 'https://i.pravatar.cc/150?u=rakha';
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profil Saya'),
+        title: Text(
+          'Riwayat',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        backgroundColor: Colors.blueAccent,
+        centerTitle: true,
+        elevation: 0,
+        automaticallyImplyLeading: false,
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(height: 20),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: 20),
 
-              // Widget untuk menampilkan gambar profil berbentuk lingkaran
-              CircleAvatar(
-                radius: 60, // Ukuran lingkaran
-                backgroundImage: NetworkImage("https://img.freepik.com/free-photo/cheerful-young-african-man-showing-thumbs-up_171337-9627.jpg?semt=ais_hybrid&w=740&q=80"),
-                backgroundColor: Colors.grey[200], // Warna saat gambar loading
+            // Foto Profil
+            CircleAvatar(
+              radius: 70, // Perbesar ukuran
+              backgroundImage: NetworkImage("https://media.istockphoto.com/id/1346015318/photo/amazed-black-man-checking-smart-phone-in-a-park.jpg?s=612x612&w=0&k=20&c=yVGCKR406DIf5KLNrlext9aW-DYHDSp7lCvFk-bOoq4="),
+              backgroundColor: Colors.white,
+            ),
+            SizedBox(height: 20),
+
+            // Nama
+            Text(
+              'Rakha Noor A. Admaja',
+              style: TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
               ),
-              SizedBox(height: 24),
+            ),
+            SizedBox(height: 8),
+            Text(
+              '11 PPLG 1', // Tambahkan subjudul kecil
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.grey[600],
+              ),
+            ),
+            SizedBox(height: 30),
 
-              // Nama Pengguna
-              Text(
-                'Rakha Noor A. Admaja',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+            // Kartu Informasi
+            Card(
+              elevation: 4,
+              shadowColor: Colors.black.withOpacity(0.2),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: Column(
+                  children: [
+                    ListTile(
+                      leading: Icon(Icons.class_outlined, color: Colors.blueAccent),
+                      title: Text(
+                        'Nomor Absen',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(
+                        '32',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    Divider(indent: 16, endIndent: 16),
+                    ListTile(
+                      leading: Icon(Icons.email_outlined, color: Colors.blueAccent),
+                      title: Text(
+                        'Email',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(
+                        'Rakhanoor12@gmail.com',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: 32),
-
-              // Info Detail Pengguna (Absen & Email)
-              // Kita gunakan ListTile agar rapi dan ada ikonnya
-              ListTile(
-                leading: Icon(Icons.class_),
-                title: Text('Nomor Absen'),
-                subtitle: Text('32'),
-              ),
-              Divider(), // Garis pemisah
-              ListTile(
-                leading: Icon(Icons.email_outlined),
-                title: Text('Email'),
-                subtitle: Text('RakhaNoor12@gmail.com'),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
