@@ -1,4 +1,5 @@
-// lib/pages/home/home_page.dart
+// lib/pages/home/home_page.dart (Versi Perbaikan)
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_project/controllers/home_controller.dart';
@@ -12,8 +13,6 @@ class HomePage extends GetView<HomeController> {
         automaticallyImplyLeading: false,
       ),
       body: Obx(() {
-        // Obx akan otomatis me-rebuild widget di dalamnya
-        // setiap kali ada perubahan pada list 'controller.todos'.
         if (controller.todos.isEmpty) {
           return Center(child: Text('Tidak ada tugas, hore!'));
         }
@@ -21,14 +20,12 @@ class HomePage extends GetView<HomeController> {
           itemCount: controller.todos.length,
           itemBuilder: (context, index) {
             final todo = controller.todos[index];
-            // Kita gunakan Obx lagi di sini agar setiap item bisa
-            // me-rebuild dirinya sendiri saat statusnya berubah.
             return Obx(() => CheckboxListTile(
                   title: Text(
                     todo.title,
                     style: TextStyle(
                       decoration: todo.isDone.value
-                          ? TextDecoration.lineThrough // Coret jika selesai
+                          ? TextDecoration.lineThrough
                           : TextDecoration.none,
                     ),
                   ),
@@ -37,8 +34,9 @@ class HomePage extends GetView<HomeController> {
                       : null,
                   value: todo.isDone.value,
                   onChanged: (value) {
-                    // Panggil fungsi di controller untuk mengubah status
-                    controller.toggleTodoStatus(index);
+                    // --- DI SINI PERBAIKANNYA ---
+                    // Kirim seluruh objek 'todo', bukan hanya 'index'.
+                    controller.toggleTodoStatus(todo);
                   },
                 ));
           },
@@ -47,7 +45,6 @@ class HomePage extends GetView<HomeController> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          // Nanti ini akan membuka halaman tambah todo
           Get.snackbar('Info', 'Fitur Tambah Todo akan dibuat selanjutnya!');
         },
       ),

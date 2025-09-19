@@ -3,23 +3,45 @@ import 'package:get/get.dart';
 import '../models/todo_model.dart';
 
 class HomeController extends GetxController {
-  // '.obs' pada list berarti GetX akan memantau
-  // semua perubahan di dalam list ini (tambah, hapus, ubah).
+  // Daftar untuk tugas yang BELUM selesai
   var todos = <Todo>[].obs;
+  // DAFTAR BARU: untuk tugas yang SUDAH selesai
+  var completedTodos = <Todo>[].obs;
 
   @override
   void onInit() {
-    // Menambahkan beberapa data awal untuk contoh
-    todos.addAll([
+    // Memisahkan data awal ke daftar yang sesuai
+    List<Todo> initialData = [
       Todo(title: 'Selesaikan Tugas Flutter', description: 'Batas waktu hari Senin!'),
       Todo(title: 'Makan malam', isDone: true),
       Todo(title: 'Belajar GetX'),
-    ]);
+    ];
+
+    for (var todo in initialData) {
+      if (todo.isDone.value) {
+        completedTodos.add(todo);
+      } else {
+        todos.add(todo);
+      }
+    }
     super.onInit();
   }
 
-  // Fungsi untuk mengubah status selesai/belum selesai
-  void toggleTodoStatus(int index) {
-    todos[index].isDone.value = !todos[index].isDone.value;
+  // --- FUNGSI UTAMA: LOGIKA PINDAH DAFTAR ---
+  void toggleTodoStatus(Todo todo) {
+    // Ubah statusnya
+    todo.isDone.toggle();
+
+    if (todo.isDone.value) {
+      // Jika sekarang statusnya SELESAI:
+      // Pindahkan dari daftar 'todos' ke 'completedTodos'
+      todos.remove(todo);
+      completedTodos.add(todo);
+    } else {
+      // Jika sekarang statusnya BELUM SELESAI:
+      // Pindahkan dari daftar 'completedTodos' kembali ke 'todos'
+      completedTodos.remove(todo);
+      todos.add(todo);
+    }
   }
 }
