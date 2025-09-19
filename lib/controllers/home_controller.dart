@@ -43,5 +43,17 @@ class HomeController extends GetxController {
       completedTodos.remove(todo);
       todos.add(todo);
     }
+
+  }
+  
+  void addTodo(Todo newTodo) {
+    todos.add(newTodo);
+  }
+
+  void editTodo(Todo oldTodo, Todo updatedTodo) {
+    int index = todos.indexOf(oldTodo);
+    if (index != -1) {
+      todos[index] = updatedTodo;
+    }
   }
 }

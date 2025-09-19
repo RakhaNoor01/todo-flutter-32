@@ -6,7 +6,7 @@ class Routes {
 
   static const history = '/history';
   static const profile = '/profile';
-  
-  static const addTodo = '/add-todo';
-  static const editTodo = '/edit-todo';
+
+  static const addTodo = '/add_todo';
+  static const editTodo = '/edit_todo';
 }

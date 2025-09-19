@@ -10,6 +10,9 @@ import '../bindings/home_binding.dart';
 import '../pages/dashboard_page.dart';
 import '../bindings/dashboard_binding.dart';
 
+import '../pages/add_todo_page.dart';
+import '../bindings/add_todo_binding.dart';
+
 import 'app_routes.dart';
 
 class AppPages {
@@ -32,6 +35,12 @@ class AppPages {
       name: Routes.dashboard,
       page: () => DashboardPage(),
       binding: DashboardBinding(),
+    ),
+
+    GetPage(
+      name: Routes.addTodo,
+      page: () => AddTodoPage(),
+      binding: AddTodoBinding(),
     ),
   ];
 }

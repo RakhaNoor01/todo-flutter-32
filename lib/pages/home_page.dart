@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_project/controllers/home_controller.dart';
+import 'package:todo_project/routes/app_routes.dart';
 
 class HomePage extends GetView<HomeController> {
   @override
@@ -45,7 +46,7 @@ class HomePage extends GetView<HomeController> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          Get.snackbar('Info', 'Fitur Tambah Todo akan dibuat selanjutnya!');
+          Get.toNamed(Routes.addTodo);
         },
       ),
     );
