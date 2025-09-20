@@ -1,0 +1,52 @@
+// lib/routes/app_pages.dart (Versi Perbaikan)
+
+import 'package:get/get.dart';
+import '../pages/login_page.dart';
+import '../bindings/login_binding.dart';
+
+import '../pages/home_page.dart';
+import '../bindings/home_binding.dart';
+
+import '../pages/dashboard_page.dart';
+import '../bindings/dashboard_binding.dart';
+
+import '../pages/add_todo_page.dart';
+import '../bindings/add_todo_binding.dart';
+
+import '../pages/edit_todo_page.dart';
+import '../bindings/edit_todo_binding.dart';
+
+import 'app_routes.dart';
+
+class AppPages {
+  static const initial = Routes.login;
+
+  static final routes = [
+    GetPage(
+      name: Routes.login,
+      page: () => LoginPage(),
+      binding: LoginBinding(),
+    ),
+    GetPage(
+      name: Routes.home,
+      page: () => HomePage(),
+      binding: HomeBinding(),
+    ),
+    GetPage(
+      name: Routes.dashboard,
+      page: () => DashboardPage(),
+      binding: DashboardBinding(),
+    ),
+    GetPage(
+      name: Routes.addTodo,
+      page: () => AddTodoPage(),
+      binding: AddTodoBinding(),
+    ),
+    
+    GetPage(
+      name: Routes.editTodo,
+      page: () => EditTodoPage(),
+      binding: EditTodoBinding(),
+    ),
+  ];
+}
