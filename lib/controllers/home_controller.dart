@@ -1,5 +1,4 @@
 // lib/controllers/home_controller.dart
-import 'dart:ui';
 
 import 'package:get/get.dart';
 import '../models/todo_model.dart';
@@ -62,7 +61,7 @@ class HomeController extends GetxController {
       DeleteBtn(
         todo: todo,
         onConfirmDelete: () {
-          // Logika penghapusan tetap di sini, di dalam controller
+          // Logika delete
           if (todo.isDone.value) {
             completedTodos.remove(todo);
           } else {

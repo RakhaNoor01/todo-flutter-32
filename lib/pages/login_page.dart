@@ -70,7 +70,6 @@ class LoginPage extends GetView<LoginController> {
 
                 // Pesan Status
                 Obx(() {
-                  // sedikit padding agar tidak terlalu mepet
                   return Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Text(

@@ -1,25 +1,23 @@
-// lib/pages/history_page.dart (Versi Final)
+// lib/pages/history/history_page.dart
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todo_project/controllers/home_controller.dart';
+import 'package:todo_project/controllers/history_controller.dart';
 import 'package:todo_project/routes/app_routes.dart';
 import 'package:todo_project/widgets/todo_card.dart';
 
-class HistoryPage extends GetView<HomeController> {
+class HistoryPage extends GetView<HistoryController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Riwayat Tugas',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-        ),
+        title: Text('Riwayat Tugas'),
         backgroundColor: Colors.blueAccent,
-        centerTitle: true,
-        elevation: 0,
         automaticallyImplyLeading: false,
       ),
+      backgroundColor: Colors.grey[200],
       body: Obx(() {
+        // memantau daftar 'completedTodos' dari HistoryController
         if (controller.completedTodos.isEmpty) {
           return Center(child: Text('Belum ada tugas yang diselesaikan.'));
         }
@@ -31,7 +29,6 @@ class HistoryPage extends GetView<HomeController> {
             return TodoCard(
               todo: todo,
               onToggleStatus: (value) {
-                // Jika di-uncheck, tugas akan kembali ke HomePage
                 controller.toggleTodoStatus(todo);
               },
               onEdit: () => Get.toNamed(Routes.editTodo, arguments: todo),

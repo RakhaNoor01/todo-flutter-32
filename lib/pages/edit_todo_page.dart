@@ -14,8 +14,14 @@ class EditTodoPage extends GetView<EditTodoController> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('Edit Tugas'),
+        title: Text(
+          'Daftar Tugas',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         backgroundColor: Colors.blueAccent,
+        centerTitle: true,
+        elevation: 0,
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),

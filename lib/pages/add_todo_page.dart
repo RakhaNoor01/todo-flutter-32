@@ -14,8 +14,14 @@ class AddTodoPage extends GetView<AddTodoController> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('Tambah Tugas Baru'),
+        title: Text(
+          'Daftar Tugas',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         backgroundColor: Colors.blueAccent,
+        centerTitle: true,
+        elevation: 0,
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
@@ -79,7 +85,7 @@ class AddTodoPage extends GetView<AddTodoController> {
                     ),
                   )),
               SizedBox(height: 32),
-              PrimaryButton(text: 'SIMPAN TUGAS', onPressed: () => controller.addTodo()),
+              PrimaryButton(text: 'SIMPAN', onPressed: () => controller.addTodo()),
             ],
           ),
         ),
