@@ -1,4 +1,4 @@
-// lib/widgets/custom_button.dart (Versi Styling)
+// lib/widgets/custom_button.dart
 import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatelessWidget {

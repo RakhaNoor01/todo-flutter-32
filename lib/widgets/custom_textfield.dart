@@ -1,18 +1,18 @@
-// lib/widgets/custom_textfield.dart (Versi Styling)
+// lib/widgets/custom_textfield.dart
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
-  final IconData? prefixIcon; // Tambahkan properti untuk ikon
+  final IconData? prefixIcon; // icon
 
   const CustomTextField({
     super.key,
     required this.controller,
     required this.hintText,
     this.obscureText = false,
-    this.prefixIcon, // Tambahkan di constructor
+    this.prefixIcon,
   });
 
   @override
