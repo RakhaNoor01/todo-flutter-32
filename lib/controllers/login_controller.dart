@@ -20,7 +20,7 @@ class LoginController extends GetxController {
       print("Kondisi login terpenuhi, mencoba navigasi ke /home...");
 
       Future.delayed(Duration(seconds: 1), () {
-        Get.offAllNamed(Routes.dashboard);
+        Get.offAllNamed(Routes.dashboard); // Di delay satu detik, sebelum dipindahin ke dashboard
       });
     } else {
       loginMessage.value = 'Username atau password salah.';

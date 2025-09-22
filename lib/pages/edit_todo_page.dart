@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
 import 'package:todo_project/controllers/edit_todo_controller.dart';
 import 'package:todo_project/models/todo_model.dart';
 import 'package:todo_project/widgets/primary_button.dart';
@@ -58,6 +59,7 @@ class EditTodoPage extends GetView<EditTodoController> {
                     onChanged: (val) => controller.selectedPriority.value = val!,
                   )),
               SizedBox(height: 16),
+
               Obx(() => DropdownButtonFormField<String>(
                     value: controller.selectedCategory.value,
                     decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
@@ -66,7 +68,7 @@ class EditTodoPage extends GetView<EditTodoController> {
                   )),
               SizedBox(height: 24),
               
-              Text('Tenggat Waktu', style: Theme.of(context).textTheme.titleLarge),
+              Text('Tempo Waktu', style: Theme.of(context).textTheme.titleLarge),
               SizedBox(height: 16),
               
               Obx(() => InkWell(

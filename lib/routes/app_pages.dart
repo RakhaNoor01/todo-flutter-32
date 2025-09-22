@@ -1,4 +1,4 @@
-// lib/routes/app_pages.dart (Versi Perbaikan)
+// lib/routes/app_pages.dart
 
 import 'package:get/get.dart';
 import '../pages/login_page.dart';
