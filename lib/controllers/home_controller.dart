@@ -1,6 +1,7 @@
 // lib/controllers/home_controller.dart
 
 import 'package:get/get.dart';
+
 import '../models/todo_model.dart';
 import '../widgets/delete_button.dart';
 
@@ -10,7 +11,6 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    // Memisahkan data awal ke daftar yang sesuai
     List<Todo> initialData = [
       Todo(title: 'Selesaikan Tugas Flutter', description: 'Batas waktu hari Senin!'),
       Todo(title: 'Makan malam', isDone: true),
@@ -31,13 +31,11 @@ class HomeController extends GetxController {
     todo.isDone.toggle();
 
     if (todo.isDone.value) {
-      // Jika statusnya SELESAI:
       // Pindahkan dari daftar 'todos' ke 'completedTodos'
       todos.remove(todo);
       completedTodos.add(todo);
     } else {
-      // Jika statusnya BELUM SELESAI:
-      // Pindahkan dari daftar 'completedTodos' kembali ke 'todos'
+      // Pindahkan dari daftar 'completedTodos' balik ke 'todos'
       completedTodos.remove(todo);
       todos.add(todo);
     }
@@ -49,7 +47,7 @@ class HomeController extends GetxController {
   }
 
   void editTodo(Todo oldTodo, Todo updatedTodo) {
-    // Coba cari indeks tugas di daftar tugas yg aktif
+    // cari index tugas di daftar tugas yg aktif
     int index = todos.indexOf(oldTodo);
 
     if (index != -1) {
@@ -70,13 +68,12 @@ class HomeController extends GetxController {
       DeleteBtn(
         todo: todo,
         onConfirmDelete: () {
-          // Logika delete
           if (todo.isDone.value) {
             completedTodos.remove(todo);
           } else {
             todos.remove(todo);
           }
-          Get.back(); // Tutup dialog
+          Get.back();
           Get.snackbar(
             'Berhasil Dihapus',
             'Tugas "${todo.title}" telah dihapus.',

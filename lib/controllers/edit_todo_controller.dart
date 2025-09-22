@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:todo_project/controllers/home_controller.dart';
 import 'package:todo_project/models/todo_model.dart';
 
@@ -24,8 +25,7 @@ class EditTodoController extends GetxController {
 
     titleController = TextEditingController(text: todo.title);
     
-    // Jika todo.description null, gunakan string kosong ''
-    descriptionController = TextEditingController(text: todo.description ?? '');
+    descriptionController = TextEditingController(text: todo.description ?? ''); // Kalo kosong, pakai string kosong ''
 
     selectedPriority.value = todo.priority;
     selectedCategory.value = todo.category;

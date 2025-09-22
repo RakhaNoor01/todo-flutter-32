@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
 import 'package:todo_project/controllers/add_todo_controller.dart';
 import 'package:todo_project/models/todo_model.dart';
 import 'package:todo_project/widgets/primary_button.dart';
@@ -65,7 +66,7 @@ class AddTodoPage extends GetView<AddTodoController> {
                   )),
 
               SizedBox(height: 24),
-              Text('Tenggat Waktu', style: Theme.of(context).textTheme.titleLarge),
+              Text('Tempo Waktu', style: Theme.of(context).textTheme.titleLarge),
               SizedBox(height: 16),
 
               Obx(() => InkWell(
@@ -88,7 +89,7 @@ class AddTodoPage extends GetView<AddTodoController> {
                     ),
                   )),
               SizedBox(height: 32),
-              PrimaryButton(text: 'SIMPAN', onPressed: () => controller.addTodo()),
+              PrimaryButton(text: 'TAMBAH TUGAS', onPressed: () => controller.addTodo()),
             ],
           ),
         ),

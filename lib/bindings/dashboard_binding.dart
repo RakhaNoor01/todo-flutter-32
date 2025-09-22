@@ -1,6 +1,7 @@
 // lib/bindings/dashboard_binding.dart
 
 import 'package:get/get.dart';
+
 import '../controllers/dashboard_controller.dart';
 import '../controllers/home_controller.dart';
 import '../controllers/history_controller.dart';

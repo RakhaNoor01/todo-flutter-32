@@ -42,7 +42,7 @@ class ProfilePage extends StatelessWidget {
             ),
             SizedBox(height: 8),
             Text(
-              '11 PPLG 1', // Tambahkan subjudul kecil
+              '11 PPLG 1', // Kelas
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.grey[600],

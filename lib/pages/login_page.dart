@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../controllers/login_controller.dart';
-import '../../widgets/primary_button.dart';
-import '../../widgets/custom_textfield.dart';
+
+import '../controllers/login_controller.dart';
+import '../widgets/primary_button.dart';
+import '../widgets/custom_textfield.dart';
 
 class LoginPage extends GetView<LoginController> {
   @override
