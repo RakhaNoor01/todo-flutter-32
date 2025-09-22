@@ -14,10 +14,10 @@ class HistoryController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // Langsung isi daftar dengan data dari HomeController
+    // diisi daftar data dari HomeController
     completedTodos.assignAll(_homeController.completedTodos);
 
-    // Buat listener. Setiap kali daftar completedTodos di HomeController berubah,
+    // Buat listener. Setiap kali daftar completedTodos di HomeController di update,
     _homeController.completedTodos.listen((updatedList) {
       completedTodos.assignAll(updatedList);
     });

@@ -15,7 +15,7 @@ class EditTodoPage extends GetView<EditTodoController> {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Text(
-          'Daftar Tugas',
+          'Edit Tugas',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: Colors.blueAccent,
@@ -32,7 +32,7 @@ class EditTodoPage extends GetView<EditTodoController> {
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.1),
+                color: Colors.black.withValues(alpha: 0.1),
                 blurRadius: 10,
               )
             ],

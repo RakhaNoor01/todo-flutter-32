@@ -11,13 +11,17 @@ class HistoryPage extends GetView<HistoryController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Riwayat Tugas'),
+        title: Text(
+          'Riwayat',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         backgroundColor: Colors.blueAccent,
+        centerTitle: true,
+        elevation: 0,
         automaticallyImplyLeading: false,
       ),
-      backgroundColor: Colors.grey[200],
       body: Obx(() {
-        // memantau daftar 'completedTodos' dari HistoryController
+        // memantau daftar 'completedTodos' dari HistoryController, kalau kosong muncul tulisan
         if (controller.completedTodos.isEmpty) {
           return Center(child: Text('Belum ada tugas yang diselesaikan.'));
         }
