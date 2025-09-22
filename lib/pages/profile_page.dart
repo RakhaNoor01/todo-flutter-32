@@ -9,7 +9,7 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Riwayat',
+          'Profil',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: Colors.blueAccent,
@@ -53,7 +53,7 @@ class ProfilePage extends StatelessWidget {
             // Kartu Informasi
             Card(
               elevation: 4,
-              shadowColor: Colors.black.withOpacity(0.2),
+              shadowColor: Colors.black.withValues(alpha: 0.2),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),

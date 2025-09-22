@@ -11,6 +11,7 @@ class AddTodoController extends GetxController {
 
   var selectedPriority = Todo.priorities[0].obs;
   var selectedCategory = Todo.categories[0].obs;
+  
   var selectedDate = Rxn<DateTime>();
 
   final HomeController _homeController = Get.find();

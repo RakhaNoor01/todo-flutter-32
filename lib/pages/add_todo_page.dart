@@ -15,7 +15,7 @@ class AddTodoPage extends GetView<AddTodoController> {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Text(
-          'Daftar Tugas',
+          'Tambah Tugas',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: Colors.blueAccent,
@@ -32,7 +32,7 @@ class AddTodoPage extends GetView<AddTodoController> {
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.1),
+                color: Colors.black.withValues(alpha: 0.1),
                 blurRadius: 10,
               )
             ],
@@ -48,6 +48,7 @@ class AddTodoPage extends GetView<AddTodoController> {
               SizedBox(height: 24),
               Text('Kategori & Prioritas', style: Theme.of(context).textTheme.titleLarge),
               SizedBox(height: 16),
+
               Obx(() => DropdownButtonFormField<String>(
                     value: controller.selectedPriority.value,
                     decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
@@ -55,12 +56,14 @@ class AddTodoPage extends GetView<AddTodoController> {
                     onChanged: (val) => controller.selectedPriority.value = val!,
                   )),
               SizedBox(height: 16),
+
               Obx(() => DropdownButtonFormField<String>(
                     value: controller.selectedCategory.value,
                     decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
                     items: Todo.categories.map((c) => DropdownMenuItem(value: c, child: Text(c))).toList(),
                     onChanged: (val) => controller.selectedCategory.value = val!,
                   )),
+
               SizedBox(height: 24),
               Text('Tenggat Waktu', style: Theme.of(context).textTheme.titleLarge),
               SizedBox(height: 16),

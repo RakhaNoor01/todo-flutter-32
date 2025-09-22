@@ -11,8 +11,10 @@ class EditTodoController extends GetxController {
 
   late TextEditingController titleController;
   late TextEditingController descriptionController;
+  
   late var selectedPriority = Todo.priorities[0].obs;
   late var selectedCategory = Todo.categories[0].obs;
+
   late var selectedDate = Rxn<DateTime>();
 
   @override
@@ -30,12 +32,11 @@ class EditTodoController extends GetxController {
     selectedDate.value = todo.dueDate;
   }
 
-  // Fungsi untuk memindahkan logika date picker
   void selectDate(BuildContext context) async {
     DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: selectedDate.value ?? DateTime.now(),
-      firstDate: DateTime(2000),
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now(),
       lastDate: DateTime(2100),
     );
     if (picked != null) {

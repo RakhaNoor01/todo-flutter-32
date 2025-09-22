@@ -28,7 +28,6 @@ class HomeController extends GetxController {
   }
 
   void toggleTodoStatus(Todo todo) {
-    // Ubah statusnya
     todo.isDone.toggle();
 
     if (todo.isDone.value) {
@@ -50,9 +49,19 @@ class HomeController extends GetxController {
   }
 
   void editTodo(Todo oldTodo, Todo updatedTodo) {
+    // Coba cari indeks tugas di daftar tugas yg aktif
     int index = todos.indexOf(oldTodo);
+
     if (index != -1) {
+      // Jika ketemu di daftar aktif, perbarui di sana
       todos[index] = updatedTodo;
+    } else {
+      // Jika tidak ketemu, cari di daftar tugas selesai
+      index = completedTodos.indexOf(oldTodo);
+      if (index != -1) {
+        // Jika ketemu di daftar selesai, perbarui di sana
+        completedTodos[index] = updatedTodo;
+      }
     }
   }
 
