@@ -19,6 +19,9 @@ import '../bindings/edit_todo_binding.dart';
 import '../pages/splash_screen_page.dart';
 import '../bindings/splash_screen_binding.dart';
 
+import '../pages/profile_page.dart';
+import '../bindings/profile_binding.dart';
+
 import 'app_routes.dart';
 
 class AppPages {
@@ -55,6 +58,11 @@ class AppPages {
       name: Routes.splashScreen,
       page: () => SplashScreenPage(),
       binding: SplashscreenBinding(),
+    ),
+    GetPage(
+      name: Routes.profile,
+      page: () => ProfilePage(),
+      binding: ProfileBinding(),
     ),
   ];
 }

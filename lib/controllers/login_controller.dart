@@ -11,6 +11,12 @@ class LoginController extends GetxController {
 
   var loginMessage = ''.obs;
 
+  var isMobile = true.obs;
+
+  void updateLayout(double width) {
+    isMobile.value = width < 600;
+  }
+
   login() async {
     if(usernameController.text.toString() == "admin"
     && passwordController.text.toString() == "admin"){

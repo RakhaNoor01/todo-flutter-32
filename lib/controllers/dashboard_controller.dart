@@ -7,8 +7,15 @@ class DashboardController extends GetxController {
   // 0 = Home, 1 = History, 2 = Profile
   var tabIndex = 0.obs;
 
-  // Fungsi untuk mengubah tab saat item navigasi ditekan.
+  var isMobile = true.obs;
+
+  void updateLayout(double width) {
+    isMobile.value = width < 600;
+  }
+
   void changeTabIndex(int index) {
     tabIndex.value = index;
+    if (!isMobile.value && Get.context != null) {
+    }
   }
 }

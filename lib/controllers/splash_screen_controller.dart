@@ -3,6 +3,12 @@ import '../routes/app_routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashscreenController extends GetxController{
+  var isMobile = true.obs;
+
+  void updateLayout(double width) {
+    isMobile.value = width < 600;
+  }
+
 @override
   void onInit() {
     // TODO: implement onInit

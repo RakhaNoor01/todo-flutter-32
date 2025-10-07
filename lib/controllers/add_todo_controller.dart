@@ -12,8 +12,14 @@ class AddTodoController extends GetxController {
 
   var selectedPriority = Todo.priorities[0].obs;
   var selectedCategory = Todo.categories[0].obs;
-  
+
   var selectedDate = Rxn<DateTime>();
+
+  var isMobile = true.obs;
+
+  void updateLayout(double width) {
+    isMobile.value = width < 600;
+  }
 
   final HomeController _homeController = Get.find();
 

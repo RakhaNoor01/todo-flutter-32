@@ -11,6 +11,12 @@ class HomeController extends GetxController {
   var completedTodos = <Todo>[].obs;
   final _dbHelper = DBHelper();
 
+  var isMobile = true.obs;
+
+  void updateLayout(double width) {
+    isMobile.value = width < 600;
+  }
+
   @override
   void onInit() {
     super.onInit();

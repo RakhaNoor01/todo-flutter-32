@@ -9,6 +9,12 @@ class HistoryController extends GetxController {
   // Mencari HomeController yang sudah ada
   final HomeController _homeController = Get.find();
 
+  var isMobile = true.obs;
+
+  void updateLayout(double width) {
+    isMobile.value = width < 600;
+  }
+
   // Properti untuk menampung daftar tugas yang sudah selesai
   var completedTodos = <Todo>[].obs;
 

@@ -10,6 +10,12 @@ class EditTodoController extends GetxController {
   final HomeController _homeController = Get.find();
   late Todo todo;
 
+  var isMobile = true.obs;
+
+  void updateLayout(double width) {
+    isMobile.value = width < 600;
+  }
+
   late TextEditingController titleController;
   late TextEditingController descriptionController;
   

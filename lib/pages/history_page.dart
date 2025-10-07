@@ -2,46 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:todo_project/controllers/history_controller.dart';
-import 'package:todo_project/routes/app_routes.dart';
-import 'package:todo_project/widgets/todo_card.dart';
+import 'mobile/history_page.dart';
+import 'widescreen/history_page.dart';
 
 class HistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<HistoryController>();
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Riwayat',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        backgroundColor: Colors.blueAccent,
-        centerTitle: true,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-      ),
-      body: Obx(() {
-        // memantau daftar 'completedTodos' dari HistoryController, kalau kosong muncul tulisan
-        if (controller.completedTodos.isEmpty) {
-          return Center(child: Text('Belum ada tugas yang diselesaikan.'));
-        }
-        return ListView.builder(
-          padding: EdgeInsets.all(8.0),
-          itemCount: controller.completedTodos.length,
-          itemBuilder: (context, index) {
-            final todo = controller.completedTodos[index];
-            return TodoCard(
-              todo: todo,
-              onToggleStatus: (value) {
-                controller.toggleTodoStatus(todo);
-              },
-              onEdit: () => Get.toNamed(Routes.editTodo, arguments: todo),
-              onDelete: () => controller.deleteTodo(todo),
-            );
-          },
-        );
-      }),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        controller.updateLayout(constraints.maxWidth);
+        return Obx(() => controller.isMobile.value ? HistoryPageMobile() : HistoryPageWidescreen());
+      },
     );
   }
 }
