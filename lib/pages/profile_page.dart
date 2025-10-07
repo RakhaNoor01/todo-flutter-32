@@ -1,10 +1,13 @@
 // lib/pages/profile/profile_page.dart
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:todo_project/controllers/login_controller.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<LoginController>();
 
     return Scaffold(
       appBar: AppBar(
@@ -88,6 +91,49 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 30),
+
+            // Tombol Logout
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                icon: const Icon(Icons.logout),
+                label: const Text('Logout'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  padding: EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 5,
+                ),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Konfirmasi Logout'),
+                        content: Text('Apakah Anda yakin ingin logout?'),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            child: Text('Tidak'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                              controller.logout();
+                            },
+                            child: Text('Ya'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 30),
           ],
         ),
       ),

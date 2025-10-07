@@ -4,75 +4,55 @@ import 'package:get/get.dart';
 
 import '../models/todo_model.dart';
 import '../widgets/delete_button.dart';
+import '../helper/db_helper.dart';
 
 class HomeController extends GetxController {
   var todos = <Todo>[].obs;
   var completedTodos = <Todo>[].obs;
+  final _dbHelper = DBHelper();
 
   @override
   void onInit() {
-    List<Todo> initialData = [
-      Todo(title: 'Selesaikan Tugas Flutter', description: 'Batas waktu hari Senin!'),
-      Todo(title: 'Makan malam', isDone: true),
-      Todo(title: 'Belajar GetX'),
-    ];
+    super.onInit();
+    fetchTodos();
+  }
 
-    for (var todo in initialData) {
+  Future<void> fetchTodos() async {
+    final allTodos = await _dbHelper.getTodos();
+    todos.clear();
+    completedTodos.clear();
+    for (var todo in allTodos) {
       if (todo.isDone.value) {
         completedTodos.add(todo);
       } else {
         todos.add(todo);
       }
     }
-    super.onInit();
   }
 
-  void toggleTodoStatus(Todo todo) {
+  void toggleTodoStatus(Todo todo) async {
     todo.isDone.toggle();
-
-    if (todo.isDone.value) {
-      // Pindahkan dari daftar 'todos' ke 'completedTodos'
-      todos.remove(todo);
-      completedTodos.add(todo);
-    } else {
-      // Pindahkan dari daftar 'completedTodos' balik ke 'todos'
-      completedTodos.remove(todo);
-      todos.add(todo);
-    }
-
+    await _dbHelper.updateTodo(todo);
+    await fetchTodos();
   }
 
-  void addTodo(Todo newTodo) {
-    todos.add(newTodo);
+  void addTodo(Todo newTodo) async {
+    await _dbHelper.insertTodo(newTodo);
+    await fetchTodos();
   }
 
-  void editTodo(Todo oldTodo, Todo updatedTodo) {
-    // cari index tugas di daftar tugas yg aktif
-    int index = todos.indexOf(oldTodo);
-
-    if (index != -1) {
-      // Jika ketemu di daftar aktif, perbarui di sana
-      todos[index] = updatedTodo;
-    } else {
-      // Jika tidak ketemu, cari di daftar tugas selesai
-      index = completedTodos.indexOf(oldTodo);
-      if (index != -1) {
-        // Jika ketemu di daftar selesai, perbarui di sana
-        completedTodos[index] = updatedTodo;
-      }
-    }
+  void editTodo(Todo oldTodo, Todo updatedTodo) async {
+    await _dbHelper.updateTodo(updatedTodo);
+    await fetchTodos();
   }
 
   void deleteTodo(Todo todo) {
     Get.dialog(
       DeleteBtn(
         todo: todo,
-        onConfirmDelete: () {
-          if (todo.isDone.value) {
-            completedTodos.remove(todo);
-          } else {
-            todos.remove(todo);
-          }
+        onConfirmDelete: () async {
+          await _dbHelper.deleteTodo(todo.id!);
+          await fetchTodos();
           Get.back();
           Get.snackbar(
             'Berhasil Dihapus',

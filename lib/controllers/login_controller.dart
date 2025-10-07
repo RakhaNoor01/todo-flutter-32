@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../routes/app_routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
   final usernameController = TextEditingController();
@@ -10,20 +11,21 @@ class LoginController extends GetxController {
 
   var loginMessage = ''.obs;
 
-  void login() {
-    String username = usernameController.text;
-    String password = passwordController.text;
+  login() async {
+    if(usernameController.text.toString() == "admin"
+    && passwordController.text.toString() == "admin"){
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString("username", usernameController.text.toString());
+      Get.offAllNamed(Routes.dashboard);
 
-    if (username == 'admin' && password == 'admin') {
-      loginMessage.value = 'Login berhasil!';
-
-      print("Kondisi login terpenuhi, mencoba navigasi ke /home...");
-
-      Future.delayed(Duration(seconds: 1), () {
-        Get.offAllNamed(Routes.dashboard); // Di delay satu detik, sebelum dipindahin ke dashboard
-      });
     } else {
-      loginMessage.value = 'Username atau password salah.';
+      Get.snackbar("Error", "Username atau Password salah");
     }
+  }
+
+  logout() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove("username");
+    Get.offAllNamed(Routes.splashScreen);
   }
 }

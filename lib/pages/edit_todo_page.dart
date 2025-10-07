@@ -1,5 +1,3 @@
-// lib/pages/edit_todo/edit_todo_page.dart
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -9,9 +7,11 @@ import 'package:todo_project/models/todo_model.dart';
 import 'package:todo_project/widgets/primary_button.dart';
 import 'package:todo_project/widgets/custom_textfield.dart';
 
-class EditTodoPage extends GetView<EditTodoController> {
+class EditTodoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<EditTodoController>();
+
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(

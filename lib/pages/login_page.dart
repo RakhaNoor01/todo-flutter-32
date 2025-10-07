@@ -1,5 +1,3 @@
-// lib/pages/login/login_page.dart
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,11 +5,13 @@ import '../controllers/login_controller.dart';
 import '../widgets/primary_button.dart';
 import '../widgets/custom_textfield.dart';
 
-class LoginPage extends GetView<LoginController> {
+class LoginPage extends StatelessWidget {
+  final LoginController controller = Get.find<LoginController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200], // bg
+      backgroundColor: Colors.grey[200],
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
@@ -29,7 +29,7 @@ class LoginPage extends GetView<LoginController> {
               ],
             ),
             child: Column(
-              mainAxisSize: MainAxisSize.min, // Agar container pas dengan isinya
+              mainAxisSize: MainAxisSize.min,
               children: [
                 // Header
                 Icon(Icons.checklist_rtl, size: 60, color: Colors.blueAccent),

@@ -1,5 +1,3 @@
-// lib/pages/dashboard/dashboard_page.dart
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_project/controllers/dashboard_controller.dart';
@@ -8,9 +6,11 @@ import 'package:todo_project/pages/home_page.dart';
 import 'package:todo_project/pages/history_page.dart';
 import 'package:todo_project/pages/profile_page.dart';
 
-class DashboardPage extends GetView<DashboardController> {
+class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<DashboardController>();
+
     return Scaffold(
       body: Obx(
         () => IndexedStack(

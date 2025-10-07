@@ -1,5 +1,3 @@
-// lib/pages/history/history_page.dart
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,9 +5,11 @@ import 'package:todo_project/controllers/history_controller.dart';
 import 'package:todo_project/routes/app_routes.dart';
 import 'package:todo_project/widgets/todo_card.dart';
 
-class HistoryPage extends GetView<HistoryController> {
+class HistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<HistoryController>();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(

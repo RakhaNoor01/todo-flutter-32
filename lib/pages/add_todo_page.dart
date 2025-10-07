@@ -1,5 +1,3 @@
-// lib/pages/add_todo/add_todo_page.dart
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -9,9 +7,11 @@ import 'package:todo_project/models/todo_model.dart';
 import 'package:todo_project/widgets/primary_button.dart';
 import 'package:todo_project/widgets/custom_textfield.dart';
 
-class AddTodoPage extends GetView<AddTodoController> {
+class AddTodoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<AddTodoController>();
+
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
@@ -70,7 +70,6 @@ class AddTodoPage extends GetView<AddTodoController> {
               SizedBox(height: 16),
 
               Obx(() => InkWell(
-                    // Manggil Kalender dari Controller
                     onTap: () => controller.selectDate(context),
                     child: InputDecorator(
                       decoration: InputDecoration(

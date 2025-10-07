@@ -31,7 +31,7 @@ class AddTodoController extends GetxController {
 
   void addTodo() {
     if (titleController.text.isEmpty) {
-      Get.snackbar('Error', 'Judul tidak boleh kosong');
+      Get.snackbar('Error', 'Judul tidak boleh kosong', snackPosition: SnackPosition.BOTTOM,);
       return;
     }
     final newTodo = Todo(

@@ -20,11 +20,10 @@ class EditTodoController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
+    super.onInit(); //ngecek kalo kesimpan
     todo = Get.arguments;
 
     titleController = TextEditingController(text: todo.title);
-    
     descriptionController = TextEditingController(text: todo.description ?? ''); // Kalo kosong, pakai string kosong ''
 
     selectedPriority.value = todo.priority;
@@ -46,11 +45,12 @@ class EditTodoController extends GetxController {
 
   void editTodo() {
     if (titleController.text.isEmpty) {
-      Get.snackbar('Error', 'Judul tidak boleh kosong');
+      Get.snackbar('Error', 'Judul tidak boleh kosong', snackPosition: SnackPosition.BOTTOM,);
       return;
     }
 
     final updatedTodo = Todo(
+      id: todo.id,
       title: titleController.text,
       description: descriptionController.text,
       priority: selectedPriority.value,
