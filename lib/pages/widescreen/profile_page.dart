@@ -46,8 +46,7 @@ class ProfilePageWidescreen extends StatelessWidget {
               // Kartu Informasi
               Card(
                 elevation: 4,
-                // PERBAIKAN: Mengganti withValues menjadi withOpacity
-                shadowColor: Colors.black.withOpacity(0.2), //
+                shadowColor: Colors.black.withOpacity(0.2),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),

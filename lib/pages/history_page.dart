@@ -13,7 +13,9 @@ class HistoryPage extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         controller.updateLayout(constraints.maxWidth);
-        return Obx(() => controller.isMobile.value ? HistoryPageMobile() : HistoryPageWidescreen());
+        return Obx(() => controller.isMobile.value 
+        ? HistoryPageMobile() 
+        : HistoryPageWidescreen());
       },
     );
   }

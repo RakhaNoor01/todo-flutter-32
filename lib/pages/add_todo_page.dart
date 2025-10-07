@@ -13,7 +13,9 @@ class AddTodoPage extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         controller.updateLayout(constraints.maxWidth);
-        return Obx(() => controller.isMobile.value ? AddTodoPageMobile() : AddTodoPageWidescreen());
+        return Obx(() => controller.isMobile.value 
+        ? AddTodoPageMobile() 
+        : AddTodoPageWidescreen());
       },
     );
   }

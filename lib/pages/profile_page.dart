@@ -13,7 +13,9 @@ class ProfilePage extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         controller.updateLayout(constraints.maxWidth);
-        return Obx(() => controller.isMobile.value ? ProfilePageMobile() : ProfilePageWidescreen());
+        return Obx(() => controller.isMobile.value 
+        ? ProfilePageMobile() 
+        : ProfilePageWidescreen());
       },
     );
   }

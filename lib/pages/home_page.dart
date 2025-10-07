@@ -13,7 +13,9 @@ class HomePage extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         controller.updateLayout(constraints.maxWidth);
-        return Obx(() => controller.isMobile.value ? HomePageMobile() : HomePageWidescreen());
+        return Obx(() => controller.isMobile.value 
+        ? HomePageMobile() 
+        : HomePageWidescreen());
       },
     );
   }

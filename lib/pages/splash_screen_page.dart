@@ -14,7 +14,9 @@ class SplashScreenPage extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         controller.updateLayout(constraints.maxWidth);
-        return Obx(() => controller.isMobile.value ? SplashScreenPageMobile() : SplashScreenPageWidescreen());
+        return Obx(() => controller.isMobile.value 
+        ? SplashScreenPageMobile() 
+        : SplashScreenPageWidescreen());
       },
     );
   }

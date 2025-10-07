@@ -13,7 +13,9 @@ class EditTodoPage extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         controller.updateLayout(constraints.maxWidth);
-        return Obx(() => controller.isMobile.value ? EditTodoPageMobile() : EditTodoPageWidescreen());
+        return Obx(() => controller.isMobile.value 
+        ? EditTodoPageMobile() 
+        : EditTodoPageWidescreen());
       },
     );
   }

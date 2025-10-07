@@ -98,7 +98,8 @@ class ProfilePageMobile extends StatelessWidget {
                 label: const Text('Logout'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
-                  padding: EdgeInsets.symmetric(vertical: 16),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -109,19 +110,19 @@ class ProfilePageMobile extends StatelessWidget {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text('Konfirmasi Logout'),
-                        content: Text('Apakah Anda yakin ingin logout?'),
+                        title: const Text('Konfirmasi Logout'),
+                        content: const Text('Apakah Anda yakin ingin logout?'),
                         actions: [
                           TextButton(
                             onPressed: () => Navigator.of(context).pop(),
-                            child: Text('Tidak'),
+                            child: const Text('Tidak'),
                           ),
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).pop();
                               controller.logout();
                             },
-                            child: Text('Ya'),
+                            child: const Text('Ya'),
                           ),
                         ],
                       );

@@ -66,6 +66,7 @@ class EditTodoController extends GetxController {
     );
 
     _homeController.editTodo(todo, updatedTodo);
+    Get.snackbar('Success', 'Todo updated successfully', snackPosition: SnackPosition.BOTTOM);
     Get.back();
   }
 }

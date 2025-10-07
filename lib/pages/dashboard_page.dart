@@ -13,7 +13,9 @@ class DashboardPage extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         controller.updateLayout(constraints.maxWidth);
-        return Obx(() => controller.isMobile.value ? DashboardPageMobile() : DashboardPageWidescreen());
+        return Obx(() => controller.isMobile.value 
+        ? DashboardPageMobile() 
+        : DashboardPageWidescreen());
       },
     );
   }

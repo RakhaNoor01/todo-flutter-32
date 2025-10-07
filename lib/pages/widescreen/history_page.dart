@@ -1,3 +1,4 @@
+// history_page.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,24 +15,42 @@ class HistoryPageWidescreen extends StatelessWidget {
       if (controller.completedTodos.isEmpty) {
         return const Center(child: Text('Belum ada tugas yang diselesaikan.'));
       }
-      return GridView.builder(
-        padding: const EdgeInsets.all(8.0),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 8.0,
-          mainAxisSpacing: 8.0,
-          childAspectRatio: 2.0,
-        ),
-        itemCount: controller.completedTodos.length,
-        itemBuilder: (context, index) {
-          final todo = controller.completedTodos[index];
-          return TodoCard(
-            todo: todo,
-            onToggleStatus: (value) {
-              controller.toggleTodoStatus(todo);
-            },
-            onEdit: () => Get.toNamed(Routes.editTodo, arguments: todo),
-            onDelete: () => controller.deleteTodo(todo),
+
+      return LayoutBuilder(
+        builder: (context, constraints) {
+          final double availableWidth = constraints.maxWidth;
+
+          int crossAxisCount = 2;
+          if (availableWidth > 900) {
+            crossAxisCount = 3;
+          } else if (availableWidth > 600) {
+            crossAxisCount = 2;
+          }
+
+          double childAspectRatio = 2.5;
+
+          return Expanded(
+            child: GridView.builder(
+              padding: const EdgeInsets.all(16.0),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount,
+                crossAxisSpacing: 16.0,
+                mainAxisSpacing: 16.0,
+                childAspectRatio: childAspectRatio,
+              ),
+              itemCount: controller.completedTodos.length,
+              itemBuilder: (context, index) {
+                final todo = controller.completedTodos[index];
+                return TodoCard(
+                  todo: todo,
+                  onToggleStatus: (value) {
+                    controller.toggleTodoStatus(todo);
+                  },
+                  onEdit: () => Get.toNamed(Routes.editTodo, arguments: todo),
+                  onDelete: () => controller.deleteTodo(todo),
+                );
+              },
+            ),
           );
         },
       );

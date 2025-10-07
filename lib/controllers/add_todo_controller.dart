@@ -48,6 +48,7 @@ class AddTodoController extends GetxController {
       dueDate: selectedDate.value,
     );
     _homeController.addTodo(newTodo);
+    Get.snackbar('Success', 'Todo added successfully', snackPosition: SnackPosition.BOTTOM);
     Get.back();
   }
 }
