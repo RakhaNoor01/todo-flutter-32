@@ -2,6 +2,7 @@
 import 'package:get/get.dart';
 
 class Todo {
+  int? id;
   String title;
   String? description;
   RxBool isDone;
@@ -15,11 +16,12 @@ class Todo {
   static const List<String> categories = ['Personal', 'Keluarga', 'Pekerjaan', 'Sekolah'];
 
   Todo({
+    this.id,
     required this.title,
     this.description,
     bool isDone = false,
 
-    // Default
+    // Defaultnya disini king
     this.priority = 'Low',
     this.category = 'Personal',
     this.dueDate,

@@ -7,11 +7,13 @@ import 'package:todo_project/models/todo_model.dart';
 class DeleteBtn extends StatelessWidget {
   final Todo todo;
   final VoidCallback onConfirmDelete;
+  final VoidCallback? onCancel;
 
   const DeleteBtn({
     super.key,
     required this.todo,
     required this.onConfirmDelete,
+    this.onCancel,
   });
 
   @override
@@ -31,7 +33,10 @@ class DeleteBtn extends StatelessWidget {
       actions: [
         OutlinedButton(
           child: Text('Batal'),
-          onPressed: () => Get.back(), // Selalu tutup dialog
+          onPressed: () {
+            Get.back();
+            onCancel?.call();
+          },
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(

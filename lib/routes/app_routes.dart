@@ -10,4 +10,6 @@ class Routes {
 
   static const addTodo = '/add_todo';
   static const editTodo = '/edit_todo';
+
+  static const splashScreen = '/splashscreen';
 }
