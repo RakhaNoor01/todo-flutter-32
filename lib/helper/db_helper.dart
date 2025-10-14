@@ -85,3 +85,4 @@ class DBHelper {
     return client.delete('todos', where: 'id = ?', whereArgs: [id]);
   }
 }
+

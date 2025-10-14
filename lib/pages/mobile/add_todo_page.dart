@@ -132,10 +132,10 @@ class AddTodoPageMobile extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 32),
-              PrimaryButton(
-                text: 'TAMBAH TUGAS',
-                onPressed: () => controller.addTodo(),
-              ),
+              Obx(() => PrimaryButton(
+                text: controller.isLoading.value ? 'MENAMBAHKAN...' : 'TAMBAH TUGAS',
+                onPressed: controller.isLoading.value ? null : () => controller.addTodo(),
+              )),
             ],
           ),
         ),

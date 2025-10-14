@@ -34,7 +34,7 @@ class EditTodoPageWidescreen extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
-                BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10),
+                BoxShadow(color: Colors.black.withAlpha(26), blurRadius: 10),
               ],
             ),
             child: Row(
@@ -157,10 +157,10 @@ class EditTodoPageWidescreen extends StatelessWidget {
                       // Tombol simpan di kanan bawah
                       Align(
                         alignment: Alignment.bottomRight,
-                        child: PrimaryButton(
-                          text: 'SIMPAN',
-                          onPressed: () => controller.editTodo(),
-                        ),
+                        child: Obx(() => PrimaryButton(
+                          text: controller.isLoading.value ? 'MENYIMPAN...' : 'SIMPAN',
+                          onPressed: controller.isLoading.value ? null : () => controller.editTodo(),
+                        )),
                       ),
                     ],
                   ),

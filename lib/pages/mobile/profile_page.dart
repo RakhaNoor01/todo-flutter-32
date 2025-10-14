@@ -29,7 +29,7 @@ class ProfilePageMobile extends StatelessWidget {
             CircleAvatar(
               radius: 70, // Perbesar ukuran
               backgroundImage: NetworkImage(
-                "https://media.istockphoto.com/id/1346015318/photo/amazed-black-man-checking-smart-phone-in-a-park.jpg?s=612x612&w=0&k=20&c=yVGCKR406DIf5KLNrlext9aW-DYHDSp7lCvFk-bOoq4=",
+                "https://media.licdn.com/dms/image/v2/D4D03AQGDyXt_tOvcZA/profile-displayphoto-crop_800_800/B4DZl0ERQOHwAI-/0/1758588902409?e=1763596800&v=beta&t=KUqGYtFxY1ieD4DrbZkkDbduE4GAmzNvv_pyxqwL7F0",
               ),
               backgroundColor: Colors.white,
             ),

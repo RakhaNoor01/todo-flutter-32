@@ -1,5 +1,6 @@
 // lib/controllers/home_controller.dart
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../models/todo_model.dart';
@@ -42,14 +43,15 @@ class HomeController extends GetxController {
     await fetchTodos();
   }
 
-  void addTodo(Todo newTodo) async {
+  Future<void> addTodo(Todo newTodo) async {
     await _dbHelper.insertTodo(newTodo);
     await fetchTodos();
   }
 
-  void editTodo(Todo oldTodo, Todo updatedTodo) async {
+  Future<void> editTodo(Todo oldTodo, Todo updatedTodo, {VoidCallback? onComplete}) async {
     await _dbHelper.updateTodo(updatedTodo);
     await fetchTodos();
+    onComplete?.call();
   }
 
   void deleteTodo(Todo todo) {

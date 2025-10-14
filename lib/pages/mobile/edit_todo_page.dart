@@ -136,10 +136,10 @@ class EditTodoPageMobile extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 32),
-              PrimaryButton(
-                text: 'SIMPAN PERUBAHAN',
-                onPressed: () => controller.editTodo(),
-              ),
+              Obx(() => PrimaryButton(
+                text: controller.isLoading.value ? 'MENYIMPAN...' : 'SIMPAN PERUBAHAN',
+                onPressed: controller.isLoading.value ? null : () => controller.editTodo(),
+              )),
             ],
           ),
         ),

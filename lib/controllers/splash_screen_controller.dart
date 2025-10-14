@@ -23,7 +23,7 @@ class SplashscreenController extends GetxController{
     final savedUsername = prefs.getString("username");
     if (savedUsername != null && savedUsername.isNotEmpty) {
       // sudah login
-      Get.offAllNamed(Routes.login);
+      Get.offAllNamed(Routes.dashboard);
     } else {
       // belum login
       Get.offAllNamed(Routes.login); 

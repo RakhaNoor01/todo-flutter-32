@@ -35,7 +35,7 @@ class AddTodoPageWidescreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withAlpha(26),
                   blurRadius: 10,
                   offset: const Offset(0, 5),
                 ),
@@ -168,10 +168,10 @@ class AddTodoPageWidescreen extends StatelessWidget {
 
                       Align(
                         alignment: Alignment.bottomRight,
-                        child: PrimaryButton(
-                          text: 'TAMBAH TUGAS',
-                          onPressed: () => controller.addTodo(),
-                        ),
+                        child: Obx(() => PrimaryButton(
+                          text: controller.isLoading.value ? 'MENAMBAHKAN...' : 'TAMBAH TUGAS',
+                          onPressed: controller.isLoading.value ? null : () => controller.addTodo(),
+                        )),
                       ),
                     ],
                   ),

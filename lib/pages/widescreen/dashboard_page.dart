@@ -45,11 +45,28 @@ class DashboardPageWidescreen extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blueAccent),
-              child: Text(
-                'Menu Navigasi',
-                style: TextStyle(color: Colors.white, fontSize: 20),
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blueAccent,
+                image: DecorationImage(
+                  image: NetworkImage(
+                    'https://img.freepik.com/premium-photo/portrait-happy-guy-young-positive-smiling-man-using-looking-screen-his-cell-mobile-phone_157823-1428.jpg',
+                  ),
+                  fit: BoxFit.cover,
+                  opacity:
+                      0.3,
+                ),
+              ),
+              child: const Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  'Todo List App',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
 
@@ -58,7 +75,7 @@ class DashboardPageWidescreen extends StatelessWidget {
                 leading: const Icon(Icons.home_filled),
                 title: const Text('Home'),
                 selected: controller.tabIndex.value == 0,
-                selectedTileColor: Colors.blueAccent.withOpacity(0.1),
+                selectedTileColor: Colors.blueAccent.withAlpha(26),
                 onTap: () {
                   controller.changeTabIndex(0);
                   Get.back();
@@ -70,7 +87,7 @@ class DashboardPageWidescreen extends StatelessWidget {
                 leading: const Icon(Icons.history_edu_rounded),
                 title: const Text('History'),
                 selected: controller.tabIndex.value == 1,
-                selectedTileColor: Colors.blueAccent.withOpacity(0.1),
+                selectedTileColor: Colors.blueAccent.withAlpha(26),
                 onTap: () {
                   controller.changeTabIndex(1);
                   Get.back();
@@ -82,7 +99,7 @@ class DashboardPageWidescreen extends StatelessWidget {
                 leading: const Icon(Icons.person),
                 title: const Text('Profile'),
                 selected: controller.tabIndex.value == 2,
-                selectedTileColor: Colors.blueAccent.withOpacity(0.1),
+                selectedTileColor: Colors.blueAccent.withAlpha(26),
                 onTap: () {
                   controller.changeTabIndex(2);
                   Get.back();
